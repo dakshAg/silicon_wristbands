@@ -70,14 +70,14 @@ export default function Home(props) {
     }, [product])
 
     const onSubmitQuote = (data) => {
-        let mergedJob = { ...MERCHI.toJson(product._defaultJob), ...data }
+        let mergedJob = { ...MERCHI.toJson(product.defaultJob()), ...data }
         setJob(mergedJob)
         //console.log(mergedJob)
         router.push('/order/user-details?p=quote')
     }
 
     const onSubmitCart = (data) => {
-        let mergedJob = { ...MERCHI.toJson(product._defaultJob), ...data }
+        let mergedJob = { ...MERCHI.toJson(product.defaultJob()), ...data }
         setJob(mergedJob)
         //console.log(mergedJob)
         router.push('/order/user-details?p=cart')
@@ -89,7 +89,7 @@ export default function Home(props) {
             <main>
                 <div className={styles.container}>
                     <form className={styles.form}>
-                        <h1>{product ? product._name : "No Product"}</h1>
+                        <h1>{product ? product.name() : "No Product"}</h1>
 
                         {
                             fields.map((field, index) => (

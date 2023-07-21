@@ -32,7 +32,6 @@ export default function Home(props) {
     } = useForm({ shouldUnregister: false, });
 
     function findUser(email, full_data) {
-        // No longer Fucked
         MERCHI.getUserIdByEmail(email, (data) => {
             // console.log(data);
             localStorage.setItem("user", data.user_id);

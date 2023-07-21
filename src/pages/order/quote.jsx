@@ -26,6 +26,8 @@ export default function Home(props) {
         const domain = new MERCHI.Domain().id(9)
         // console.log(user)
         const jobEntity = makeMerchiJsEnt("Job", job)
+
+        // Remove values that cannot be set. Throws error if they are provided
         jobEntity.costPerUnit(null);
         jobEntity.cost(null)
         jobEntity.taxAmount(null)
@@ -61,7 +63,9 @@ export default function Home(props) {
         <main>
             <h1>Confirm - Quote Summary</h1>
 
-            {/*user &&
+            {/*
+            Customer detials are no longer shown since they are usually unavailable to fetch
+            user &&
                 <div>
                     <h3>Customer Details</h3>
                     <p>{user.name}</p>
