@@ -6,6 +6,7 @@ import CartItem from "../../components/cart-item";
 import MERCHI from "../../app/merchi";
 import { useRouter } from 'next/router'
 import { useForm } from "react-hook-form";
+import { makeMerchiJsEnt } from "../../utils/entity-resolver";
 import CartFab from "../../components/cart-fab";
 
 export default function Cart() {
@@ -22,11 +23,6 @@ export default function Cart() {
                 variationField: {}
             }
         }
-    }
-
-    function makeMerchiJsEnt(entName, data) {
-        const jobEntity = MERCHI.fromJson(new MERCHI[entName](), data);
-        return jobEntity;
     }
 
     function createCart() {

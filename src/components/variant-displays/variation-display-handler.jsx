@@ -8,6 +8,7 @@ import ImageSelectDisplay from "./image-select-display"
 import TextInputDisplay from "./text-input-display"
 import ColourPickerDisplay from "./colour-picker-display"
 import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi"
+import TextAreaDisplay from "./text-area-display"
 
 
 export default function VariationDisplayHandler(props) {
@@ -24,6 +25,8 @@ export default function VariationDisplayHandler(props) {
         return <ImageSelectDisplay {...props} />
     else if (variation.isTextField())
         return <TextInputDisplay {...props} />
+    else if (variation.isTextAreaField())
+        return <TextAreaDisplay {...props} />
     else if (variation.isColourPicker())
         return <ColourPickerDisplay {...props} />
     else if (variation.isFileUpload())

@@ -1,3 +1,5 @@
+import MERCHI from "../app/merchi";
+
 export const removeEmpty = (obj) => {
     let newObj = {};
     Object.keys(obj).forEach((key) => {
@@ -24,4 +26,13 @@ export function cleanUndefinedToNull(obj) {
         ...result,
         [key]: cleanUndefinedToNull(obj[key])
     }), {});
+}
+
+export function makeMerchiJsEnt(entName, data) {
+    if (Array.isArray(data)) {
+        const entities = data.map((v) => makeMerchiJsEnt(entName, v))
+        return entities
+    }
+    const jobEntity = MERCHI.fromJson(new MERCHI[entName](), data);
+    return jobEntity;
 }

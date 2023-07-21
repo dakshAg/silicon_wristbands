@@ -3,7 +3,7 @@ import { useForm, useController, UseControllerProps } from "react-hook-form"
 import styles from './image-select.module.css'
 
 
-export default function TextField(props) {
+export default function TextArea(props) {
   const variation_field = props.variation_field;
   const variation_options = variation_field.options();
   //console.log(variation_options);

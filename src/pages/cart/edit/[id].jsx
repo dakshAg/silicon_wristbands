@@ -6,6 +6,7 @@ import CartFab from '../../../components/cart-fab';
 import VariationHandler from '../../../components/variation-handler';
 import TopBar from '../../../components/top-bar';
 import CartItemSummary from '../../../components/cart-item-summary';
+import { makeMerchiJsEnt } from '../../../utils/entity-resolver';
 import { merchi as sdk_merchi } from "../../../../sdk/javascript/merchi";
 
 export default function EditCartItem(){
@@ -30,15 +31,8 @@ export default function EditCartItem(){
         keyName: "faux_id"
     });
 
-    function makeMerchiJsEnt(entName, data) {
-        return MERCHI.fromJson(new MERCHI[entName](), data);
-    }
-
     const MERCHI = sdk_merchi("https://api.staging.merchi.co/", "https://websockets.staging.merchi.co/");
 
-    function fetchProduct() {
-
-    }
 
     useEffect(() => {
         const cartItemId = router.query.id

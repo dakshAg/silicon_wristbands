@@ -52,6 +52,7 @@ export default function AddToCart() {
             const c = MERCHI.toJson(response)
             console.log("Cart Created")
             setCart(c)
+            
             localStorage.setItem("cart", JSON.stringify({ id: c.id, token: c.token }))
             addClientToCart(response)
         },

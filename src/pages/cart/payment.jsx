@@ -55,11 +55,6 @@ export default function Payment() {
         setStripePromise(loadStripe(stripePK))
     }
 
-    function makeMerchiJsEnt(entName, data) {
-        const jobEntity = MERCHI.fromJson(new MERCHI[entName](), data);
-        return jobEntity;
-    }
-
     useEffect(() => {
         const { id, token } = JSON.parse(localStorage.getItem("cart"));
         if (id) {

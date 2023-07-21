@@ -1,5 +1,5 @@
 export default function Order(){
     return (
-        <h1>Not Made yet</h1>
+        <h1>Nothing Here</h1>
     )
 }

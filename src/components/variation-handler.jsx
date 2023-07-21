@@ -7,6 +7,7 @@ import { useForm, useController, UseControllerProps } from "react-hook-form"
 import TextInput from "./text-input";
 import ColourPicker from "./colour-picker";
 import FileUpload from "./file-upload";
+import TextArea from "./text-area";
 export default function VariationHandler(props) {
     const { field, fieldState } = useController(props)
 
@@ -20,6 +21,8 @@ export default function VariationHandler(props) {
         return <ImageSelect {...props} />
     else if (props.variation_field.isTextType())
         return <TextInput {...props} />
+    else if (props.variation_field.isTextAreaType())
+        return <TextArea {...props} />
     else if (props.variation_field.isColourPickerType())
         return <ColourPicker {...props} />
     else if (props.variation_field.isFileInput())
