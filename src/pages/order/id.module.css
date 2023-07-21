@@ -1,0 +1,22 @@
+.container{
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    justify-content: center;
+}
+
+.form{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 30px;
+    border-radius: 5px;
+    gap:3px;
+}
