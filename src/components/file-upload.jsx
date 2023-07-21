@@ -16,8 +16,8 @@ export default function FileUpload(props) {
   return (
     <div>
       <div className={styles.info_banner}>
-                <h4>{variation_field._name}</h4>
-                <p>{variation_field._placeholder}</p>
+                <h4>{variation_field.name()}</h4>
+                <p>{variation_field.placeholder()}</p>
             </div>
       <input {...field} placeholder={props.name} type="file" onChange={handleChange} />
       <img src={file} style={{height: 200}} />

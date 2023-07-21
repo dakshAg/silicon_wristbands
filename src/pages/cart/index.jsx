@@ -3,29 +3,26 @@ import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
 import VariationDisplayHandler from "../../components/variant-displays/variation-display-handler";
 import React, { useContext } from "react";
 import CartItem from "../../components/cart-item";
+import MERCHI from "../../app/merchi";
 import { useRouter } from 'next/router'
 import { useForm } from "react-hook-form";
 import CartFab from "../../components/cart-fab";
 
-export async function getServerSideProps({ req, res }) {
-    return {
-        props: {
-           // await this promise!
-            promise: await new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve('foo');
-                }, 300);
-            })
-        },
-    }
-}
-
 export default function Cart() {
-    const MERCHI = sdk_merchi("https://api.staging.merchi.co/", "https://websockets.staging.merchi.co/");
     const [cart, setCart] = React.useState();// Simple JSON
     const [cartEnt, setCartEnt] = React.useState(); //Merchi Class Entity
     const router = useRouter()
     const { register, handleSubmit, reset } = useForm();
+    const embed = {
+        receiverAddress:{},
+        client:{},
+        cartItems: {
+            product: {},
+            variations: {
+                variationField: {}
+            }
+        }
+    }
 
     function makeMerchiJsEnt(entName, data) {
         const jobEntity = MERCHI.fromJson(new MERCHI[entName](), data);
@@ -45,10 +42,13 @@ export default function Cart() {
             localStorage.setItem("cart", JSON.stringify({ id: c.id, token: c.token }))
             addItemToCart(c)
         },
-            (status, data) => console.log(`Error ${status}: ${data}`))
+            (status, data) => console.log(`Error ${status}: ${data}`),
+            embed
+            )
     }
 
     function onAddressSubmit(data){
+        console.log("Address Submit")
         const address = makeMerchiJsEnt("Address",data)
         cartEnt.receiverAddress(address)
         cartEnt.patch(()=>{
@@ -61,11 +61,11 @@ export default function Cart() {
 
     // Fetch the cart based in local storage id and token
     useEffect(() => {
-        const { id, token } = JSON.parse(localStorage.getItem("cart"));
-        if (id) {
+        const data = JSON.parse(localStorage.getItem("cart"));
+        if (data) {
             const c = new MERCHI.Cart()
-            c.id(id)
-            c.token(token)
+            c.id(data.id)
+            c.token(data.token)
             c.get((data) => {
                 setCartEnt(data)
                 setCart( MERCHI.toJson(data))
@@ -75,16 +75,7 @@ export default function Cart() {
                 //console.log(data)
             },
                 (error) => console.log(JSON.stringify(error))
-                , {
-                    receiverAddress:{},
-                    client:{},
-                    cartItems: {
-                        product: {},
-                        variations: {
-                            variationField: {}
-                        }
-                    }
-                })
+                , embed)
         } else {
             createCart()
         }
@@ -92,7 +83,7 @@ export default function Cart() {
 
     return (
         <div>
-            <h1>Cart Here</h1>
+            <h1>Cart</h1>
             {cart &&
                 <>
                     {
@@ -100,7 +91,7 @@ export default function Cart() {
                             <CartItem cart_item={cart_item} modify={true}/>
                         ))
                     }
-                    <h3>Total Cart Amount: {cart._currency} {cart._totalCost}</h3>
+                    <h3>Total Cart Amount: {cart.currency} {cart.totalCost}</h3>
                 </>
             }
             
@@ -113,7 +104,7 @@ export default function Cart() {
                     <input type="text" placeholder="State" {...register("state")}/>
                     <input type="text" placeholder="Country" {...register("country")}/>
                     <input type="text" placeholder="Postcode" {...register("postcode")}/>
-                    <button type="submit">Checkout</button>
+                    <button type="submit">Choose Shipping Method</button>
                 </form>
             </div>
 

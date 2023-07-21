@@ -34,7 +34,7 @@ export default function CartFab() {
         <div className="footer position-sticky bottom-0 end-0 me-4 d-flex justify-content-end" >
             <a className="d-flex align-items-center p-3 bg-primary mb-4 rounded text-white text-decoration-none" href="/cart">
                 <h5>Cart</h5>
-                <span class="badge badge-secondary">{cart && cart._cartItems.length}</span>
+                <span class="badge badge-secondary">{cart && cart.cartItems().length}</span>
             </a>
         </div>
     )

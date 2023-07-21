@@ -19,7 +19,7 @@ export default function OrderSummary({ control, defaultJob }) {
     const MERCHI = sdk_merchi("https://api.staging.merchi.co/", "https://websockets.staging.merchi.co/");
     useDebouncedEffect(() => {
         let mergedJob = { ...defaultJob, ...value }
-        console.log(mergedJob)
+        //console.log(mergedJob)
         MERCHI.getJobQuote(
             makeMerchiJsEnt("Job", mergedJob),
             (data) => {

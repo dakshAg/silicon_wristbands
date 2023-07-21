@@ -1,9 +1,10 @@
 import { Button } from "reactstrap"
+import styles from "./grad-button.module.css"
 
 export default function GradButton({ colour, children }) {
     return (
         <button
-            className={`p-3 rounded border-dark shadow-sm ${colour}`}
+            className={`gradient-button ${colour}`}
         >
             {children}
         </button>

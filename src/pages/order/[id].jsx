@@ -12,10 +12,8 @@ import TopBar from "../../components/top-bar";
 import { useContext } from "react";
 import styles from './id.module.css'
 import OrderSummary from "../../components/order-summary";
-import { getSelectUtilityClasses } from "@mui/material";
 import CartFab from "../../components/cart-fab";
-import { cleanUndefinedToNull } from "../../utils/entity-resolver";
-import { useSSR, fetchSSR } from "../../utils/merchi-ssr";
+import { fetchSSR } from "../../utils/merchi-ssr";
 
 export async function getServerSideProps({ req, res, params }) {
     const id = params.id

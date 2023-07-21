@@ -1,4 +1,5 @@
 // Helper Page to get rid of current cart stored locally
+// Not for User, for testing only
 
 import { useEffect } from "react"
 

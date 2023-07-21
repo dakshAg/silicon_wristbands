@@ -64,7 +64,7 @@ export default function Shipment() {
         //console.log(cartEnt)
         cartEnt.patch((data)=>{
             //console.log(data)
-            router.push("/cart/payment-new")
+            router.push("/cart/payment")
         },
         (error)=>{
             console.log(error)

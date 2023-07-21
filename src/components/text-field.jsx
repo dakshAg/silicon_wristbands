@@ -3,9 +3,11 @@ import { useForm, useController, UseControllerProps } from "react-hook-form"
 import styles from './image-select.module.css'
 
 
-export default function ColourPicker(props) {
-  const { field, fieldState } = useController(props);
+export default function TextField(props) {
   const variation_field = props.variation_field;
+  const variation_options = variation_field.options();
+  //console.log(variation_options);
+  const { field, fieldState } = useController(props);
 
   return (
     <div>
@@ -13,7 +15,7 @@ export default function ColourPicker(props) {
                 <h4>{variation_field.name()}</h4>
                 <p>{variation_field.placeholder()}</p>
             </div>
-      <input {...field} placeholder={props.name} type="color" />
+      <input {...field} />
     </div>
   )
 }

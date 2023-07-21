@@ -6,62 +6,53 @@ import CartItem from "../../components/cart-item";
 import { useRouter } from 'next/router'
 import update from 'immutability-helper';
 import { useForm } from "react-hook-form";
+import CheckoutForm from "../../components/checkout-form";
 import Stripe from "stripe";
 import CartFab from "../../components/cart-fab";
+import { Elements } from '@stripe/react-stripe-js';
 import { createPaymentIntent } from "../../utils/payment-helper";
+import { loadStripe } from '@stripe/stripe-js';
+
 
 export default function Payment() {
     const MERCHI = sdk_merchi("https://api.staging.merchi.co/", "https://websockets.staging.merchi.co/");
-    const [cart, setCart] = React.useState();
+    const [cart, setCart] = React.useState(); // Simple JSON
     const router = useRouter()
-    const [cartEnt, setCartEnt] = React.useState();
+    const [cartEnt, setCartEnt] = React.useState(); // Merchi Entity
+    const [options, setOptions] = React.useState()
+    const [stripePromise, setStripePromise] = React.useState()
 
+    // Standard Embed for cart fetching
     const embed = {
         receiverAddress: {},
         shipmentGroups: {
             quotes: {},
             selectedQuote: {
-                shipmentMethod:{}
+                shipmentMethod: {}
             }
         },
-        invoice:{},
+        client: {},
         cartItems: {
-            product: {},
+            product: {
+                domain:{
+                    company:{}
+                }
+            },
             variations: {
                 variationField: {}
             }
         }
     }
 
-    async function payNow() {
-        const stripe = Stripe("sk_test_wsFx86XDJWwmE4dMskBgJYrt")
-        const session = await stripe.checkout.sessions.create({
-            line_items: [
-                {
-                    price_data: {
-                        currency: cart.currency,
-                        product_data: {
-                            name: 'Merch',
-                        },
-                        unit_amount_decimal: Math.round(cart.totalCost * 100),
-                    },
-                    quantity: 1,
-                },
-            ],
-            mode: 'payment',
-            success_url: 'http://localhost:3000/cart/payment-success',
-            cancel_url: 'http://localhost:3000/cart/payment-failed',
-        });
-
-        router.push(session.url);
-    }
-
     function onCartAvailable(cart) {
-        //console.log(cart);
+       // console.log(cart);
         setCartEnt(cart)
         const localEnt = MERCHI.toJson(cart)
         //console.log(localEnt)
         setCart(localEnt)
+        const stripePK = localEnt.cartItems[0].product.domain.company.stripePublishableKey
+        //console.log(stripePK)
+        setStripePromise(loadStripe(stripePK))
     }
 
     function makeMerchiJsEnt(entName, data) {
@@ -77,9 +68,19 @@ export default function Payment() {
             c.token(token)
             c.get(onCartAvailable,
                 (error) => console.log(error)
-                , embed)
+                , embed);
+
+            createPaymentIntent(token, id, (data) => {
+                const opt = {
+                    // passing the client secret obtained from the server
+                    clientSecret: data.stripeClientSecret,
+                };
+                setOptions(opt)
+                //console.log(data)
+            }, (error) => { console.log(error) })
+        } else {
+
         }
-        createPaymentIntent(token,id,(success)=>{console.log(success),(error)=>{console.log(error)}})
     }, [])
 
     return (
@@ -103,10 +104,16 @@ export default function Payment() {
                                 </div>
                             ))
                         }
+                        {
+                            options && stripePromise &&
+                            <Elements stripe={stripePromise} options={options}>
+                                <CheckoutForm />
+                            </Elements>
+                        }
+
                         <h3>Total Cart Amount: {cart.currency} {cart.totalCost}</h3>
                     </>
                 }
-                <button onClick={payNow}>Pay Now</button>
             </div>
         </main>
     )
