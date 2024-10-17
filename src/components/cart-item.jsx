@@ -1,5 +1,5 @@
 import VariationDisplayHandler from "./variant-displays/variation-display-handler";
-import { merchi as sdk_merchi } from "../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import { useRouter } from 'next/router'
 
 export default function CartItem({ cart_item, modify }) {

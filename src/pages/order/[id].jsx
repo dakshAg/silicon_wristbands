@@ -1,5 +1,5 @@
 import { useForm, useFieldArray } from "react-hook-form"
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import MERCHI from "../../app/merchi"
 import React from "react";
 import { useEffect } from "react";

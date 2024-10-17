@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import VariationDisplayHandler from "../../components/variant-displays/variation-display-handler";
 import { JobContext } from "../_app";
 import React, { useContext } from "react";

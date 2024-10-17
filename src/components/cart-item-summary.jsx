@@ -1,5 +1,5 @@
 import { useWatch } from "react-hook-form";
-import { merchi as sdk_merchi } from "../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import React from "react";
 import styles from './order-summary.module.css'
 import VariationDisplayHandler from "./variant-displays/variation-display-handler";

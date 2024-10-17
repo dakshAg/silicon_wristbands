@@ -7,7 +7,7 @@ import VariationHandler from '../../../components/variation-handler';
 import TopBar from '../../../components/top-bar';
 import CartItemSummary from '../../../components/cart-item-summary';
 import { makeMerchiJsEnt } from '../../../utils/entity-resolver';
-import { merchi as sdk_merchi } from "../../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 
 export default function EditCartItem(){
     const {

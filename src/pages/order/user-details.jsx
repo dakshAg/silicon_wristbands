@@ -1,4 +1,4 @@
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import { useForm, useFieldArray, Controller } from "react-hook-form"
 import '../../app/globals.css'
 import { TextField, Select, MenuItem, Button } from "@mui/material";

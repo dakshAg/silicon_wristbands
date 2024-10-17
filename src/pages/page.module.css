@@ -22,12 +22,8 @@
 }
 .grid_container{
   display: grid;
-grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto;
 }
-.grid_item{
-  
-}
-
 .boxed{
   border-radius: 5px;
   box-shadow: 10px 10px 5px grey;

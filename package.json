@@ -22,11 +22,12 @@
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "immutability-helper": "^3.1.1",
+    "merchi_sdk_js": "^0.0.31",
     "next": "13.4.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.1",
-    "reactstrap": "^9.2.0",
+    "reactstrap": "^9.2.3",
     "stripe": "^12.13.0",
     "typescript": "5.1.6"
   },

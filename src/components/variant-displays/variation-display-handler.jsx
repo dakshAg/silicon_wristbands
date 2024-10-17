@@ -7,7 +7,7 @@ import { useForm, useController, UseControllerProps } from "react-hook-form"
 import ImageSelectDisplay from "./image-select-display"
 import TextInputDisplay from "./text-input-display"
 import ColourPickerDisplay from "./colour-picker-display"
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi"
+import { merchi as sdk_merchi } from "merchi_sdk_js"
 import TextAreaDisplay from "./text-area-display"
 
 

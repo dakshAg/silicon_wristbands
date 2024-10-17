@@ -1,6 +1,6 @@
 import { verifyPayment } from "../../utils/payment-helper";
 import { useEffect } from "react";
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 
 export default function PaymentValidate() {
     const MERCHI = sdk_merchi("https://api.staging.merchi.co/", "https://websockets.staging.merchi.co/");

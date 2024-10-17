@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { merchi as sdk_merchi } from "../../../sdk/javascript/merchi";
+import { merchi as sdk_merchi } from "merchi_sdk_js";
 import VariationDisplayHandler from "../../components/variant-displays/variation-display-handler";
 import React, { useContext } from "react";
 import CartItem from "../../components/cart-item";

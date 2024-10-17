@@ -12,7 +12,9 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
+  Container,
 } from 'reactstrap';
+import logo from '../../public/images/logo.png';
 
 function TopBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,19 +22,23 @@ function TopBar() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <Container>
       <Navbar>
-        <NavbarBrand href="/">Silicone Wristbands</NavbarBrand>
+        <NavbarBrand href="/">
+          <img
+            alt="Custom Silicone Wristbands by Silicone Wristbands Australia"
+            src={logo.src}
+            style={{
+              height: 40,
+              width: 220
+            }}
+          />
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
               <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -49,7 +55,7 @@ function TopBar() {
           <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
-    </div>
+    </Container>
   );
 }
 
