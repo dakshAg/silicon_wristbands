@@ -1,16 +1,4 @@
 /* The container */
-.container {
-
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  display: flex;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 .info_banner{
   border-radius: 3px;
   background-color: #3498DB;

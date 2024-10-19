@@ -70,8 +70,13 @@ export default function Home(props) {
               </div>
             </Col>
             <Col sm='6'>
-              <div>
-                <img src="images/banner2.png" alt="" />
+              <div className='d-flex align-items-center'>
+                <img
+                  alt='Customise your silicone wristbands'
+                  style={{background: 'transparent', border: 'none'}}
+                  className='rounded mx-auto d-block img-thumbnail'
+                  src="images/banner2.png"
+                />
               </div>
             </Col>
           </Row>
@@ -97,6 +102,7 @@ export default function Home(props) {
           <Row>
             <Col sm='6'>
               <img
+                className='ounded mx-auto d-block'
                 src="images/groupshot.jpeg"
                 alt="lots of silicone wristbands"
                 style={{width: '100%', height: 'auto'}}
